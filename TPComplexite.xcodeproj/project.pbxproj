@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B3756E329CF40B500C2A22A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B3756E229CF40B500C2A22A /* main.c */; };
+		0B3756EE29CF675300C2A22A /* pieces.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B3756ED29CF675300C2A22A /* pieces.c */; };
+		0B3756F129CF842D00C2A22A /* calendrier.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B3756F029CF842D00C2A22A /* calendrier.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		0B3756DF29CF40B500C2A22A /* TPComplexite */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TPComplexite; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3756E229CF40B500C2A22A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		0B3756EC29CF675300C2A22A /* pieces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieces.h; sourceTree = "<group>"; };
+		0B3756ED29CF675300C2A22A /* pieces.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pieces.c; sourceTree = "<group>"; };
+		0B3756EF29CF842D00C2A22A /* calendrier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = calendrier.h; sourceTree = "<group>"; };
+		0B3756F029CF842D00C2A22A /* calendrier.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = calendrier.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,10 @@
 		0B3756E129CF40B500C2A22A /* TPComplexite */ = {
 			isa = PBXGroup;
 			children = (
+				0B3756EF29CF842D00C2A22A /* calendrier.h */,
+				0B3756F029CF842D00C2A22A /* calendrier.c */,
+				0B3756EC29CF675300C2A22A /* pieces.h */,
+				0B3756ED29CF675300C2A22A /* pieces.c */,
 				0B3756E229CF40B500C2A22A /* main.c */,
 			);
 			path = TPComplexite;
@@ -119,7 +129,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3756EE29CF675300C2A22A /* pieces.c in Sources */,
 				0B3756E329CF40B500C2A22A /* main.c in Sources */,
+				0B3756F129CF842D00C2A22A /* calendrier.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
