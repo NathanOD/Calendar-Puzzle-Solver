@@ -41,4 +41,8 @@ void ajouterPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIE
 
 void retirerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIECES], int x_cal, int y_cal);
 
+int tailleXPiece(int piece[X_PIECES][Y_PIECES]);
+
+int tailleYPiece(int piece[X_PIECES][Y_PIECES]);
+
 #endif /* pieces_h */

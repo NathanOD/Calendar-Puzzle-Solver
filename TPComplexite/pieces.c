@@ -71,7 +71,7 @@ void deplacer_piece(int piece[X_PIECES][Y_PIECES]) {
 
 void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
                       int rotation[NB_PIECES_ROTATION][X_PIECES][Y_PIECES],
-                      int finales[NB_PIECES_ROTATION][X_PIECES][Y_PIECES],
+                      int finales[NB_PIECES_TOTAL][X_PIECES][Y_PIECES],
                       int id[NB_PIECES_TOTAL],
                       int tampon[X_PIECES][Y_PIECES],
                       int tampon_2[X_PIECES][Y_PIECES]) {
@@ -95,6 +95,25 @@ void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
 }
 
 int validerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIECES], int x_cal, int y_cal) {
+    int taille_x = 0;
+    int taille_y = 0;
+    for (int i = 0; i < X_PIECES; i++) {
+        for (int j = 0; j < Y_PIECES; j++) {
+            if (piece[i][j]) {
+                //printf("%d,%d\n", i,j);
+                if (i+1 > taille_x) {
+                    taille_x = i+1;
+                }
+                if (j+1 > taille_y) {
+                    taille_y = j+1;
+                }
+            }
+        }
+    }
+    
+    if (x_cal < 0 || y_cal < 0 || x_cal + taille_x > X_CALENDRIER || y_cal + taille_y > Y_CALENDRIER) {
+        return 0;
+    }
     for (int i = 0; i < X_PIECES; i++) {
         for (int j = 0; j < Y_PIECES; j++) {
             if (piece[i][j] && cal[x_cal+i][y_cal+j]) {
@@ -123,4 +142,40 @@ void retirerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIE
             }
         }
     }
+}
+
+
+
+int tailleXPiece(int piece[X_PIECES][Y_PIECES]) {
+    int nb_lignes = 0;
+    for (int i = 0; i < X_PIECES; i++) {
+        int ligne_non_nulle = 0;
+        for (int j = 0; j < Y_PIECES; j++) {
+            if (piece[i][j]) {
+                ligne_non_nulle = 1;
+                break;
+            }
+        }
+        if (ligne_non_nulle) {
+            nb_lignes++;
+        }
+    }
+    return nb_lignes;
+}
+
+int tailleYPiece(int piece[X_PIECES][Y_PIECES]) {
+    int nb_colonnes = 0;
+    for (int j = 0; j < Y_PIECES; j++) {
+        int colonne_non_nulle = 0;
+        for (int i = 0; i < X_PIECES; i++) {
+            if (piece[i][j]) {
+                colonne_non_nulle = 1;
+                break;
+            }
+        }
+        if (colonne_non_nulle) {
+            nb_colonnes++;
+        }
+    }
+    return nb_colonnes;
 }
