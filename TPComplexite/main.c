@@ -101,7 +101,7 @@ int pieces_init[NB_PIECES][X_PIECES][Y_PIECES] = {
     },
 };
 
-int trouverSolutions(int cal[X_CALENDRIER][Y_CALENDRIER], int finales[NB_PIECES][X_PIECES][Y_PIECES], int x, int y) {
+int trouverSolutions(int x, int y) {
     if (pieces_tot == NB_PIECES) {
         /*
         printf("Solution trouvee %d\n",nb_solutions+1);
@@ -120,7 +120,7 @@ int trouverSolutions(int cal[X_CALENDRIER][Y_CALENDRIER], int finales[NB_PIECES]
         return 0;
     }
     int resolu = 0;
-    if (!cal[x][y]) {
+    if (!calendrier[x][y]) {
         resolu = 1;
     }
     else {
@@ -128,21 +128,21 @@ int trouverSolutions(int cal[X_CALENDRIER][Y_CALENDRIER], int finales[NB_PIECES]
     }
     for (int id_piece=0; id_piece<NB_PIECES_TOTAL; id_piece++) {
         if (!pieces_utilisees[idPiece[id_piece]]) {
-            if ((x + tailleXPiece(finales[id_piece]) > X_CALENDRIER) || (y + tailleYPiece(finales[id_piece]) > Y_CALENDRIER)) {
+            if ((x + tailleXPiece(pieces_finales[id_piece]) > X_CALENDRIER) || (y + tailleYPiece(pieces_finales[id_piece]) > Y_CALENDRIER)) {
                 continue;
             }
-            if (!validerPiece(cal, finales[id_piece], x, y)) {
+            if (!validerPiece(calendrier, pieces_finales[id_piece], x, y)) {
                 continue;
             }
-            ajouterPiece(cal, finales[id_piece], x, y);
+            ajouterPiece(calendrier, pieces_finales[id_piece], x, y);
             pieces_utilisees[idPiece[id_piece]] = 1;
             pieces_placees[0][compteur] = id_piece;
             pieces_placees[1][compteur] = x;
             pieces_placees[2][compteur] = y;
             compteur++;
             pieces_tot++;
-            if (resolu && !cal[x][y]) {
-                retirerPiece(cal, finales[id_piece], x, y);
+            if (resolu && !calendrier[x][y]) {
+                retirerPiece(calendrier, pieces_finales[id_piece], x, y);
                 pieces_utilisees[idPiece[id_piece]] = 0;
                 pieces_tot--;
                 pieces_placees[0][compteur-1] = 0;
@@ -153,8 +153,8 @@ int trouverSolutions(int cal[X_CALENDRIER][Y_CALENDRIER], int finales[NB_PIECES]
             }
             int n_x = (x * Y_CALENDRIER + y + 1) / Y_CALENDRIER;
             int n_y = (x * Y_CALENDRIER + y + 1) % Y_CALENDRIER;
-            resultat = trouverSolutions(cal, finales, n_x, n_y);
-            retirerPiece(cal, finales[id_piece], x, y);
+            resultat = trouverSolutions(n_x, n_y);
+            retirerPiece(calendrier, pieces_finales[id_piece], x, y);
             pieces_utilisees[idPiece[id_piece]] = 0;
             pieces_tot--;
             pieces_placees[0][compteur-1] = 0;
@@ -166,7 +166,7 @@ int trouverSolutions(int cal[X_CALENDRIER][Y_CALENDRIER], int finales[NB_PIECES]
     if (!resolu) {
         int n_x = (x * Y_CALENDRIER + y + 1) / Y_CALENDRIER;
         int n_y = (x * Y_CALENDRIER + y + 1) % Y_CALENDRIER;
-        resultat = trouverSolutions(cal, finales, n_x, n_y);
+        resultat = trouverSolutions(n_x, n_y);
     }
     return 0;
 }
@@ -181,7 +181,7 @@ int main() {
     //printf("\n");
     completerPieces(pieces_init, pieces_rotation, pieces_finales, idPiece, piece_tampon, piece_tampon_2);
     
-    trouverSolutions(calendrier, pieces_finales, 0, 0);
+    trouverSolutions(0, 0);
     printf("Nombre de solutions : %d\n", nb_solutions);
     
     temps_ms = clock();

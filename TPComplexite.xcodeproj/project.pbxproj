@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B36175929D6E0F200976221 /* main */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = main; sourceTree = "<group>"; };
 		0B3756DF29CF40B500C2A22A /* TPComplexite */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TPComplexite; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3756E229CF40B500C2A22A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		0B3756EC29CF675300C2A22A /* pieces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pieces.h; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		0B3756E129CF40B500C2A22A /* TPComplexite */ = {
 			isa = PBXGroup;
 			children = (
+				0B36175929D6E0F200976221 /* main */,
 				0B3756EF29CF842D00C2A22A /* calendrier.h */,
 				0B3756F029CF842D00C2A22A /* calendrier.c */,
 				0B3756EC29CF675300C2A22A /* pieces.h */,
