@@ -32,6 +32,7 @@
 		0B3756ED29CF675300C2A22A /* pieces.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pieces.c; sourceTree = "<group>"; };
 		0B3756EF29CF842D00C2A22A /* calendrier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = calendrier.h; sourceTree = "<group>"; };
 		0B3756F029CF842D00C2A22A /* calendrier.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = calendrier.c; sourceTree = "<group>"; };
+		0BBC1F2C29D71EBC0064991C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +71,7 @@
 				0B3756EC29CF675300C2A22A /* pieces.h */,
 				0B3756ED29CF675300C2A22A /* pieces.c */,
 				0B3756E229CF40B500C2A22A /* main.c */,
+				0BBC1F2C29D71EBC0064991C /* README.md */,
 			);
 			path = TPComplexite;
 			sourceTree = "<group>";
