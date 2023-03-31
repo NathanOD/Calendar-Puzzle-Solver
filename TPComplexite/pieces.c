@@ -8,7 +8,7 @@
 #include "pieces.h"
 
 
-
+// On parcourt la pièce pour afficher tous les éléments
 void afficherPiece (int piece[X_PIECES][Y_PIECES]) {
     for (int i=0; i<X_PIECES; i++) {
         for (int j=0; j<Y_PIECES; j++) {
@@ -18,7 +18,7 @@ void afficherPiece (int piece[X_PIECES][Y_PIECES]) {
     }
 }
 
-// Roation de 90° (sens anti-horaire)
+// On parcourt la pièce pour en copier chaque élément après la rotation dans la nouvelle pièce
 void rotationPiece (int piece[X_PIECES][Y_PIECES], int tampon[X_PIECES][Y_PIECES]) {
     for (int i=0; i<Y_PIECES; i++) {
         for (int j=0; j<X_PIECES; j++) {
@@ -27,6 +27,7 @@ void rotationPiece (int piece[X_PIECES][Y_PIECES], int tampon[X_PIECES][Y_PIECES
     }
 }
 
+// On parcourt la pièce pour en copier chaque élément dans la nouvelle pièce
 void copiePiece (int piece[X_PIECES][Y_PIECES], int copie[X_PIECES][Y_PIECES]) {
     for (int i=0; i<Y_PIECES; i++) {
         for (int j=0; j<X_PIECES; j++) {
@@ -35,6 +36,7 @@ void copiePiece (int piece[X_PIECES][Y_PIECES], int copie[X_PIECES][Y_PIECES]) {
     }
 }
 
+// On replace la pièce en haut à gauche
 void deplacer_piece(int piece[X_PIECES][Y_PIECES]) {
     int i, j;
     int minX = X_PIECES, minY = Y_PIECES;
@@ -69,6 +71,7 @@ void deplacer_piece(int piece[X_PIECES][Y_PIECES]) {
     }
 }
 
+// On créer la liste des pièces finales en réalisant 3 rotations sur chaque pièce
 void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
                       int rotation[NB_PIECES_ROTATION][X_PIECES][Y_PIECES],
                       int finales[NB_PIECES_TOTAL][X_PIECES][Y_PIECES],
@@ -76,6 +79,7 @@ void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
                       int tampon[X_PIECES][Y_PIECES],
                       int tampon_2[X_PIECES][Y_PIECES]) {
     int compteur = 0;
+    // On réalise les rotations
     for (int i=0; i<NB_PIECES_ROTATION; i+=4) {
         copiePiece(init[i/4], tampon);
         for (int j=0; j<NB_ROTATION; j++) {
@@ -84,6 +88,7 @@ void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
             copiePiece(tampon_2, tampon);
         }
     }
+    // On retire les pièces identiques par symétrie
     for (int i=0; i<NB_PIECES_ROTATION; i++) {
         if (i != 14 && i != 15 && i != 34 && i != 35 && i != 38 && i != 39) {
             copiePiece(rotation[i], finales[compteur]);
@@ -94,9 +99,11 @@ void completerPieces (int init[NB_PIECES][X_PIECES][Y_PIECES],
     }
 }
 
+// On vérifie chaque coordonnée de la pièce  pour savoir si on peut l'ajouter au calendrier
 int validerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIECES], int x_cal, int y_cal) {
     int taille_x = 0;
     int taille_y = 0;
+    // On vérifie la taille de chaque pièce
     for (int i = 0; i < X_PIECES; i++) {
         for (int j = 0; j < Y_PIECES; j++) {
             if (piece[i][j]) {
@@ -110,10 +117,11 @@ int validerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIEC
             }
         }
     }
-    
+    // On vérifie que la pièce ne dépasse pas du calednrier
     if (x_cal < 0 || y_cal < 0 || x_cal + taille_x > X_CALENDRIER || y_cal + taille_y > Y_CALENDRIER) {
         return 0;
     }
+    // On vérifie qu'on peut placer la pièce
     for (int i = 0; i < X_PIECES; i++) {
         for (int j = 0; j < Y_PIECES; j++) {
             if (piece[i][j] && cal[x_cal+i][y_cal+j]) {
@@ -124,6 +132,7 @@ int validerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIEC
     return 1;
 }
 
+// Si la pièce à pour valeur 1 aux coordonnées, on ajoute un 1 au calendrier
 void ajouterPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIECES], int x_cal, int y_cal) {
     for (int i = 0; i < X_PIECES; i++) {
         for (int j = 0; j < Y_PIECES; j++) {
@@ -134,6 +143,7 @@ void ajouterPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIE
     }
 }
 
+// Si la pièce à pour valeur 1 aux coordonnées, on retire le 1 du calendrier
 void retirerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIECES], int x_cal, int y_cal) {
     for (int i = 0; i < X_PIECES; i++) {
         for (int j = 0; j < Y_PIECES; j++) {
@@ -145,7 +155,7 @@ void retirerPiece(int cal[X_CALENDRIER][Y_CALENDRIER], int piece[X_PIECES][Y_PIE
 }
 
 
-
+// On parcourt la pièce pour savoir ou se trouve la première ligne nulle
 int tailleXPiece(int piece[X_PIECES][Y_PIECES]) {
     int nb_lignes = 0;
     for (int i = 0; i < X_PIECES; i++) {
@@ -163,6 +173,7 @@ int tailleXPiece(int piece[X_PIECES][Y_PIECES]) {
     return nb_lignes;
 }
 
+// On parcourt la pièce pour savoir ou se trouve la première colonne nulle
 int tailleYPiece(int piece[X_PIECES][Y_PIECES]) {
     int nb_colonnes = 0;
     for (int j = 0; j < Y_PIECES; j++) {

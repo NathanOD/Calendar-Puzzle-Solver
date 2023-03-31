@@ -13,8 +13,10 @@
 
 #include <stdio.h>
 
+// Fonction affichant le calendrier
 void afficherCal (int cal[X_CALENDRIER][Y_CALENDRIER]);
 
+// Fonction ajoutant la date choisie par l'utilisateurau calendrier
 void indiquerJour(int jour, int numJour, int mois, int cal[X_CALENDRIER][Y_CALENDRIER]);
 
 #endif /* calendrier_h */

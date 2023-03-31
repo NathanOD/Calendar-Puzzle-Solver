@@ -7,6 +7,7 @@
 
 #include "calendrier.h"
 
+// On parcourt le calendrier pour afficher les valeurs
 void afficherCal (int cal[X_CALENDRIER][Y_CALENDRIER]) {
     for (int i=0; i<X_CALENDRIER; i++) {
         for (int j=0; j<Y_CALENDRIER; j++) {
@@ -16,6 +17,7 @@ void afficherCal (int cal[X_CALENDRIER][Y_CALENDRIER]) {
     }
 }
 
+// Pour chaque date entrée, on ajoute des 1 aux calendrier
 void indiquerJour(int jour, int numJour, int mois, int cal[X_CALENDRIER][Y_CALENDRIER]) {
     int x_jour, y_jour;
     if (jour<4) {
